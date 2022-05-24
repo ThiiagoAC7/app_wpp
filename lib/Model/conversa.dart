@@ -6,13 +6,17 @@ class Conversa {
   String? nome;
   String? numTelefone;
   DateTime? data;
+  String? lastText;
+  String? imagePath;
   // Image? foto;
 
   Conversa(
       {@required this.id,
       @required this.nome,
       @required this.numTelefone,
-      @required this.data});
+      @required this.data,
+      @required this.lastText,
+      @required this.imagePath});
 }
 
 List<Conversa> conversaList = [];
@@ -25,6 +29,8 @@ List<Conversa> getConversaList() {
         nome: "Nome" + i.toString(),
         numTelefone: "(31) 99999-9999",
         data: DateTime.now(),
+        lastText: "Conversa..." + i.toString(),
+        imagePath: "assets/images/user.png",
       ),
     );
   }

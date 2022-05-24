@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Model/conversa.dart';
+import 'tela_contato.dart';
 
 class ConversaWidget extends StatelessWidget {
   List<Conversa> conversas = getConversaList();
@@ -12,43 +13,36 @@ class ConversaWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         return Card(
           color: Color.fromARGB(255, 24, 32, 37),
-          child: Row(
-            children: [
-              Container(
-                width: 40,
-                margin:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.green),
-                ),
-                child: Text(
-                  conversas[index].id.toString(),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.purple,
-                  ),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
+          child: ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => telaContato(
                     conversas[index].nome!,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(174, 186, 193, 1)),
+                    conversas[index].imagePath!,
                   ),
-                  Text(
-                    "Conversa......",
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color.fromRGBO(174, 186, 193, 0.7)),
-                  ),
-                ],
+                ),
+              );
+            },
+            leading: CircleAvatar(
+              backgroundImage: AssetImage(conversas[index].imagePath!),
+            ),
+            title: Text(
+              conversas[index].nome!,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(174, 186, 193, 1),
               ),
-            ],
+            ),
+            subtitle: Text(
+              conversas[index].lastText!,
+              style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(174, 186, 193, 1),
+              ),
+            ),
           ),
         );
       },
