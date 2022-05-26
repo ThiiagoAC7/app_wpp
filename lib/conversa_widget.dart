@@ -37,7 +37,9 @@ class ConversaWidget extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              conversas[index].lastText!,
+              conversas[index].numTelefone! +
+                  '\n    ' +
+                  conversas[index].lastText!,
               style: TextStyle(
                 fontSize: 12,
                 color: Color.fromRGBO(174, 186, 193, 1),
